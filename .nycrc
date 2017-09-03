@@ -1,0 +1,21 @@
+{
+  "all": true,
+  "extension": [
+    ".js"
+  ],
+  "include": [
+    "src/**/*.js"
+  ],
+  "exclude": [
+    "src/**/*.spec.js"
+  ],
+  "report-dir": "./results/coverage",
+  "cache": false,
+  "sourceMap": false,
+  "instrument": false,
+  "reporter": [
+    "lcov",
+    "cobertura",
+    "text-summary"
+  ]
+}
