@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint src/",
-    "test": "shx rm -Rf results && cross-env NODE_ENV=test nyc mocha --timeout 10000 --colors --recursive --compilersjs:babel-register src/**/*.spec.js",
+    "test": "shx rm -Rf results && cross-env NODE_ENV=test nyc mocha --timeout 10000 --colors --recursive --compilers js:babel-register src/**/*.spec.js",
     "coverage": "npm run test && npm run coveralls",
     "coveralls": "shx cat ./results/coverage/lcov.info | coveralls",
     "build": "shx rm -Rf dist .tmp && cpx \"src/**/!(*.spec.js)\" .tmp && babel .tmp/ -d dist/"
