@@ -1,3 +1,5 @@
+How to build a release
+======================
 
 - Check Travis
 - Check Coveralls
