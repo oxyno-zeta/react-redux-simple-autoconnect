@@ -29,6 +29,19 @@ describe('index', () => {
     let lib;
     const connectStub = sinon.stub(reactRedux, 'connect');
     const bindActionCreatorsStub = sinon.stub(redux, 'bindActionCreators');
+
+    function connectStubFnBuilder(dispatch, state, ownProps) {
+        return (mapStateToProps, mapDispatchToProps, mergeProps) => (Component) => {
+            const props1 = mapStateToProps ? mapStateToProps(state, ownProps) : {};
+            const props2 = mapDispatchToProps ? mapDispatchToProps(dispatch, ownProps) : {};
+            let mergePropsFn = (ownProps, stateProps, dispatchProps) => (Object.assign({}, ownProps, stateProps, dispatchProps));
+            if (mergeProps) {
+                mergePropsFn = mergeProps;
+            }
+            const props = mergePropsFn(ownProps, props1, props2);
+            return new Component(props);
+        }
+    }
     before(() => {
         // eslint-disable-next-line global-require
         lib = require('./index').default;
@@ -46,12 +59,7 @@ describe('index', () => {
         const state = { count: 1 };
         const ownProps = { value1: 'test' };
         const dispatch = sinon.spy();
-        connectStub.callsFake((mapStateToProps, mapDispatchToProps) => (Component) => {
-            const props1 = mapStateToProps(state, ownProps);
-            const props2 = mapDispatchToProps(dispatch, ownProps);
-            const props = Object.assign(props1, props2);
-            return new Component(props);
-        });
+        connectStub.callsFake(connectStubFnBuilder(dispatch, state, ownProps));
         bindActionCreatorsStub.callsFake(props => props);
 
         TestClass.propTypes = {
@@ -65,28 +73,18 @@ describe('index', () => {
         const state = { count: 1 };
         const ownProps = { value1: 'test' };
         const dispatch = sinon.spy();
-        connectStub.callsFake((mapStateToProps, mapDispatchToProps) => (Component) => {
-            const props1 = mapStateToProps(state, ownProps);
-            const props2 = mapDispatchToProps(dispatch, ownProps);
-            const props = Object.assign(props1, props2);
-            return new Component(props);
-        });
+        connectStub.callsFake(connectStubFnBuilder(dispatch, state, ownProps));
         bindActionCreatorsStub.callsFake(props => props);
         const result = lib(() => [state], () => [])(TestClass);
         expect(result.props).to.deep.equal(ownProps);
     });
 
-    it('should send props with propTypes declared', () => {
+    it('should send props with propTypes declared with state and actions', () => {
         const state = { count: 1 };
         const actions = { action1: () => {} };
         const ownProps = { value1: 'test' };
         const dispatch = sinon.spy();
-        connectStub.callsFake((mapStateToProps, mapDispatchToProps) => (Component) => {
-            const props1 = mapStateToProps(state, ownProps);
-            const props2 = mapDispatchToProps(dispatch, ownProps);
-            const props = Object.assign(props1, props2);
-            return new Component(props);
-        });
+        connectStub.callsFake(connectStubFnBuilder(dispatch, state, ownProps));
         bindActionCreatorsStub.callsFake(props => props);
 
         TestClass.propTypes = {
@@ -97,6 +95,43 @@ describe('index', () => {
         expect(result.props).to.deep.equal({
             value1: 'test',
             count: 1,
+            action1: actions.action1,
+        });
+    });
+
+    it('should send props with propTypes declared with state', () => {
+        const state = { count: 1 };
+        const ownProps = { value1: 'test' };
+        const dispatch = sinon.spy();
+        connectStub.callsFake(connectStubFnBuilder(dispatch, state, ownProps));
+        bindActionCreatorsStub.callsFake(props => props);
+
+        TestClass.propTypes = {
+            count: 'int',
+            action1: 'func',
+        };
+        const result = lib(() => [state], null, (ownProps, stateProps, dispatchProps) => (Object.assign({}, ownProps, stateProps, dispatchProps)), {})(TestClass);
+        expect(result.props).to.deep.equal({
+            value1: 'test',
+            count: 1,
+        });
+    });
+
+    it('should send props with propTypes declared with actions', () => {
+        const state = { count: 1 };
+        const actions = { action1: () => {} };
+        const ownProps = { value1: 'test' };
+        const dispatch = sinon.spy();
+        connectStub.callsFake(connectStubFnBuilder(dispatch, state, ownProps));
+        bindActionCreatorsStub.callsFake(props => props);
+
+        TestClass.propTypes = {
+            count: 'int',
+            action1: 'func',
+        };
+        const result = lib(null, () => [actions], (ownProps, stateProps, dispatchProps) => (Object.assign({}, ownProps, stateProps, dispatchProps)), {})(TestClass);
+        expect(result.props).to.deep.equal({
+            value1: 'test',
             action1: actions.action1,
         });
     });

@@ -57,7 +57,7 @@ function bindItems(array, propTypes) {
 function mapStateToPropsGenerator(getStatesFunction, propTypes) {
     return (state, ownProps) => {
         const stateArray = getStatesFunction(state, ownProps);
-        return Object.assign(ownProps, bindItems(stateArray, propTypes));
+        return bindItems(stateArray, propTypes);
     };
 }
 
@@ -83,13 +83,16 @@ function mapDispatchToPropsGenerator(getActionsFunction, propTypes) {
  * Auto connect.
  * @param getStatesFunction
  * @param getActionsFunction
+ * @param mergeProps
+ * @param options
  * @returns {function(*=)}
  */
-function autoConnect(getStatesFunction, getActionsFunction) {
+function autoConnect(getStatesFunction, getActionsFunction, mergeProps, options) {
     return (Component) => {
         const propTypes = Component.propTypes;
-        const mapStateToProps = mapStateToPropsGenerator(getStatesFunction, propTypes);
-        const mapDispatchToProps = mapDispatchToPropsGenerator(getActionsFunction, propTypes);
-        return connect(mapStateToProps, mapDispatchToProps)(Component);
+        const mapStateToProps = getStatesFunction ? mapStateToPropsGenerator(getStatesFunction, propTypes) : null;
+        const mapDispatchToProps =
+            getActionsFunction ? mapDispatchToPropsGenerator(getActionsFunction, propTypes) : null;
+        return connect(mapStateToProps, mapDispatchToProps, mergeProps, options)(Component);
     };
 }
