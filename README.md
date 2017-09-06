@@ -44,6 +44,30 @@ Parameters:
 
 * `ComponentClass` : Component class to connect with state and actions.
 
+# Usage Example
+## Simple state
+```jsx
+import autoConnect from 'react-redux-autoconnect';
+import TodoComponent from './Todo';
+import actions from './actions';
+
+const Todo = autoConnect((state) => [state], () => [actions])(TodoComponent);
+
+export default Todo;
+```
+
+## Multiple state (substate)
+```jsx
+import autoConnect from 'react-redux-autoconnect';
+import TodoComponent from './Todo';
+import actions from './actions';
+import actions2 from './actions2';
+
+const Todo = autoConnect((state) => [state.generalState, state.subState1], () => [actions, action2])(TodoComponent);
+
+export default Todo;
+```
+
 # Thanks
 * My wife BH to support me doing this
 
