@@ -44,7 +44,7 @@ Parameters:
 
 * `ComponentClass` : Component class to connect with state and actions.
 
-# Usage Example
+# Examples
 ## Simple state
 ```jsx
 import autoConnect from 'react-redux-autoconnect';
