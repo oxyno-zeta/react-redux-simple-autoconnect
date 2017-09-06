@@ -6,6 +6,44 @@ react-redux-autoconnect
 - Use propTypes definition to auto connect actions/data to component
 - Use mergeProps/options of the real connect function
 
+# How it works ?
+The library use propTypes declared in the Component to link state properties or actions (dispatch is automatically 
+added) to Component. 
+
+The library will bind properties by listing state and actions object keys.  
+
+# API
+## autoConnect([getStatesFunction], [getActionsFunction], [mergeProps], [options])(ComponentClass)
+autoConnect is the default function of the library.
+
+This function is built on top of connect from [react-redux](https://github.com/reactjs/react-redux/). 
+
+### Arguments
+* `getStatesFunction(state, ownProps) : Array[state]`: This function must return an array of states. If function is not provided, 
+`null` will be given to `connect` in the `mapStateToProps` place.
+
+Parameters:
+
+| Name | Description |
+|--------|-------|
+| state | Redux store state like in `connect` in the `mapStateToProps` |
+| ownProps | The props passed to the connected component |
+
+* `getActionsFunction(ownProps) : Array[actions]`: This function must return an array of actions objects. If function
+ is not provided, `null` will be given to `connect` in the `mapDispatchToProps` place.
+ 
+ Parameters:
+ 
+ | Name | Description |
+ |--------|-------|
+ | ownProps | The props passed to the connected component |
+ 
+* `mergeProps()` : Same function as in the `connect` [official API](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options).
+
+* `options` : Same object as in the `connect` [official API](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options).
+
+* `ComponentClass` : Component class to connect with state and actions.
+
 # Thanks
 * My wife BH to support me doing this
 
