@@ -201,3 +201,5 @@ test/
 .travis.yml
 HOW-TO-BUILD-RELEASE.md
 yarn.lock
+.tmp/
+.eslintignore
