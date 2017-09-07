@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-autoconnect",
+  "name": "react-redux-simple-autoconnect",
   "version": "1.0.0",
-  "description": "React Redux Autoconnect",
+  "description": "React Redux Simple Autoconnect",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint src/",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oxyno-zeta/react-redux-autoconnect.git"
+    "url": "git+https://github.com/oxyno-zeta/react-redux-simple-autoconnect.git"
   },
   "author": "Oxyno-zeta",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/oxyno-zeta/react-redux-autoconnect/issues"
+    "url": "https://github.com/oxyno-zeta/react-redux-simple-autoconnect/issues"
   },
-  "homepage": "https://github.com/oxyno-zeta/react-redux-autoconnect#readme",
+  "homepage": "https://github.com/oxyno-zeta/react-redux-simple-autoconnect#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",

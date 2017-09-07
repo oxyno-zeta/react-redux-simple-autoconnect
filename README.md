@@ -1,6 +1,6 @@
-react-redux-autoconnect
-=======================
-[![Build Status](https://travis-ci.org/oxyno-zeta/react-redux-autoconnect.svg?branch=master)](https://travis-ci.org/oxyno-zeta/react-redux-autoconnect)[![Coverage Status](https://coveralls.io/repos/github/oxyno-zeta/react-redux-autoconnect/badge.svg?branch=master)](https://coveralls.io/github/oxyno-zeta/react-redux-autoconnect?branch=master)
+react-redux-simple-autoconnect
+==============================
+[![Build Status](https://travis-ci.org/oxyno-zeta/react-redux-simple-autoconnect.svg?branch=master)](https://travis-ci.org/oxyno-zeta/react-redux-simple-autoconnect)[![Coverage Status](https://coveralls.io/repos/github/oxyno-zeta/react-redux-simple-autoconnect/badge.svg?branch=master)](https://coveralls.io/github/oxyno-zeta/react-redux-simple-autoconnect?branch=master)
 
 # Features
 - Use propTypes definition to auto connect actions/data to component
@@ -47,7 +47,7 @@ Parameters:
 # Examples
 ## Simple state
 ```jsx
-import autoConnect from 'react-redux-autoconnect';
+import autoConnect from 'react-redux-simple-autoconnect';
 import TodoComponent from './Todo';
 import actions from './actions';
 
@@ -58,7 +58,7 @@ export default Todo;
 
 ## Multiple state (substate)
 ```jsx
-import autoConnect from 'react-redux-autoconnect';
+import autoConnect from 'react-redux-simple-autoconnect';
 import TodoComponent from './Todo';
 import actions from './actions';
 import actions2 from './actions2';
