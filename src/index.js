@@ -81,18 +81,18 @@ function mapDispatchToPropsGenerator(getActionsFunction, propTypes) {
 
 /**
  * Auto connect.
- * @param getStatesFunction
- * @param getActionsFunction
+ * @param getStates
+ * @param getActions
  * @param mergeProps
  * @param options
  * @returns {function(*=)}
  */
-function autoConnect(getStatesFunction, getActionsFunction, mergeProps, options) {
+function autoConnect(getStates, getActions, mergeProps, options) {
     return (Component) => {
         const propTypes = Component.propTypes;
-        const mapStateToProps = getStatesFunction ? mapStateToPropsGenerator(getStatesFunction, propTypes) : null;
+        const mapStateToProps = getStates ? mapStateToPropsGenerator(getStates, propTypes) : null;
         const mapDispatchToProps =
-            getActionsFunction ? mapDispatchToPropsGenerator(getActionsFunction, propTypes) : null;
+            getActions ? mapDispatchToPropsGenerator(getActions, propTypes) : null;
         return connect(mapStateToProps, mapDispatchToProps, mergeProps, options)(Component);
     };
 }

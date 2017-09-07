@@ -13,13 +13,13 @@ added) to Component.
 The library will bind properties by listing state and actions object keys.  
 
 # API
-## autoConnect([getStatesFunction], [getActionsFunction], [mergeProps], [options])(ComponentClass)
+## autoConnect([getStates], [getActions], [mergeProps], [options])(ComponentClass)
 autoConnect is the default function of the library.
 
 This function is built on top of connect from [react-redux](https://github.com/reactjs/react-redux/). 
 
 ### Arguments
-* `getStatesFunction(state, ownProps) : Array[state]`: This function must return an array of states. If function is not provided, 
+* `getStates(state, ownProps) : Array[state]`: This function must return an array of states. If function is not provided, 
 `null` will be given to `connect` in the `mapStateToProps` place.
 
 Parameters:
@@ -29,7 +29,7 @@ Parameters:
 | state | Redux store state like in `connect` in the `mapStateToProps` |
 | ownProps | The props passed to the connected component |
 
-* `getActionsFunction(ownProps) : Array[actions]`: This function must return an array of actions objects. If function
+* `getActions(ownProps) : Array[actions]`: This function must return an array of actions objects. If function
  is not provided, `null` will be given to `connect` in the `mapDispatchToProps` place.
  
  Parameters:
