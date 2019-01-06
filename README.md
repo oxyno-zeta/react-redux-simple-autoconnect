@@ -1,6 +1,6 @@
 react-redux-simple-autoconnect
 ==============================
-[![Build Status](https://travis-ci.org/oxyno-zeta/react-redux-simple-autoconnect.svg?branch=master)](https://travis-ci.org/oxyno-zeta/react-redux-simple-autoconnect)[![Coverage Status](https://coveralls.io/repos/github/oxyno-zeta/react-redux-simple-autoconnect/badge.svg?branch=master)](https://coveralls.io/github/oxyno-zeta/react-redux-simple-autoconnect?branch=master)
+[![Build Status](https://travis-ci.org/oxyno-zeta/react-redux-simple-autoconnect.svg?branch=master)](https://travis-ci.org/oxyno-zeta/react-redux-simple-autoconnect)[![Coverage Status](https://coveralls.io/repos/github/oxyno-zeta/react-redux-simple-autoconnect/badge.svg?branch=master)](https://coveralls.io/github/oxyno-zeta/react-redux-simple-autoconnect?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/oxyno-zeta/react-redux-simple-autoconnect.svg)](https://greenkeeper.io/)
 
 # Features
 - Use propTypes definition to auto connect actions/data to component
